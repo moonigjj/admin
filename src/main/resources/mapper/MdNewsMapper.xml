@@ -8,4 +8,15 @@
         where title = "text" and lang = #{lang} and type = #{type}
         limit 1
     </select>
+
+    <select id="selectAll" resultType="com.md.admin.web.vo.NewsVO">
+        select *
+        from md_news
+        <where>
+            <if test="lang != null">
+                and lang = #{lang}
+            </if>
+        </where>
+        order by id desc
+    </select>
 </mapper>

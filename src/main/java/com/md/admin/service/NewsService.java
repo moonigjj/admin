@@ -3,9 +3,12 @@
  */
 package com.md.admin.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.md.admin.entity.News;
 import com.md.admin.mapper.NewsMapper;
+import com.md.admin.web.vo.NewsVO;
 
 import org.springframework.stereotype.Service;
 
@@ -19,5 +22,10 @@ public class NewsService extends ServiceImpl<NewsMapper, News> {
 
     public News findTextOne(String lang, String type) {
         return this.baseMapper.selectTextOne(lang, type);
+    }
+
+    public IPage<NewsVO> findAllPage(Page<NewsVO> page, String lang){
+
+        return this.baseMapper.selectAll(page, lang);
     }
 }
