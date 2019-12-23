@@ -3,22 +3,22 @@
  */
 package com.md.admin.web;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
  * @author tangyue
  * @version $Id: IndexController.java, v 0.1 2019-12-17 16:10 tangyue Exp $$
  */
-@RestController
+@Controller
 public class IndexController {
 
     @GetMapping(value = "/index")
     public Object index(){
 
 
-        return "";
+        return "index";
     }
 
 }
