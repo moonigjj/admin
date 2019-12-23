@@ -21,4 +21,10 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping(value = "/welcome")
+    public Object welcome(){
+
+        return "welcome";
+    }
+
 }
