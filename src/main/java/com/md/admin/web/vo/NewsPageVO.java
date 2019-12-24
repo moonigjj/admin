@@ -16,28 +16,9 @@ import lombok.Data;
  * @version $Id: NewsVO.java, v 0.1 2019-12-23 19:29 tangyue Exp $$
  */
 @Data
-public class NewsVO {
+public class NewsPageVO extends PageVO {
 
-    private Long id;
 
     private String lang;
 
-    private Long parentId;
-
-    private String type;
-
-    private Long typeId;
-
-    private Integer level;
-
-    private Integer sort;
-
-    private String title;
-
-    private String subTitle;
-
-    private String content;
-
-    @JsonFormat(pattern = DateUtils.DATETIME, timezone="GMT+8")
-    private Date createTime;
 }
