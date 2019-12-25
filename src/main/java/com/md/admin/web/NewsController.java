@@ -35,7 +35,7 @@ public class NewsController {
     public ResultVO getAllPage(@RequestBody NewsPageVO pageVO){
 
         ResultVO resultVO = new ResultVO();
-        PageUtils.setPageNum(pageVO);
+        //PageUtils.setPageNum(pageVO);
         Page<NewsVO> page = new Page<>(pageVO.getPageNum(), pageVO.getPageSize());
         IPage<NewsVO> iPage = this.newsService.findAllPage(page, pageVO.getLang());
         resultVO.setResult(iPage);
