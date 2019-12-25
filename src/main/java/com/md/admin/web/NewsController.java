@@ -5,6 +5,7 @@ package com.md.admin.web;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.md.admin.entity.News;
 import com.md.admin.service.NewsService;
 import com.md.admin.util.PageUtils;
 import com.md.admin.web.vo.NewsPageVO;
@@ -13,7 +14,9 @@ import com.md.admin.web.vo.ResultVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,6 +59,14 @@ public class NewsController {
         ResultVO resultVO = new ResultVO();
 
         return resultVO;
+    }
+
+    @GetMapping(value = "/toedit/{newsId}")
+    public String toEdit(@PathVariable("newsId") Long newsId, Model model){
+
+        News news = this.newsService.getById(newsId);
+        model.addAttribute("news", news);
+        return "newsEdit";
     }
 
     @PostMapping(value = "/edit")
