@@ -108,7 +108,7 @@
     function queryParams(params) {
         var temp = {
             pageSize: params.limit, //页面大小
-            pageNum: params.offset
+            pageNum: params.offset / 10 + 1
         };
         return temp;
     }
