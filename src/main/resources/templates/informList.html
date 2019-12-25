@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/index_v1.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:18:23 GMT -->
+<head th:replace="header :: head"></head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="col-sm-12">
+        <!-- Example Events -->
+        <div class="example-wrap">
+            <h4 class="example-title">新闻资讯列表</h4>
+            <div class="example">
+
+                <table id="informTable"  data-mobile-responsive="true">
+                    <!--<thead>
+                    <tr>
+                        <th data-field="state" data-checkbox="true"></th>
+                    </tr>
+                    </thead>-->
+                </table>
+            </div>
+        </div>
+        <!-- End Example Events -->
+    </div>
+</div>
+</body>
+<script th:src="@{/static/js/jquery.min.js?v=2.1.4}"></script>
+<script th:src="@{/static/js/bootstrap.min.js?v=3.3.6}"></script>
+<script th:src="@{/static/js/plugins/layer/layer.min.js}"></script>
+<script th:src="@{/static/js/plugins/bootstrap-table/bootstrap-table.min.js}"></script>
+<script th:src="@{/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js}"></script>
+<script th:src="@{/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/content.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/welcome.min.js}"></script>
+<script>
+    $(function () {
+
+            $('#informTable').bootstrapTable({
+                                               url: '/inform/list',
+                                               method: 'post',
+                                               pagination: true,
+                                               sortable: false,
+                                               queryParams: queryParams,
+                                               sidePagination: 'server',
+                                               pageNumber: 1,
+                                               pageList: [10],
+                                               paginationPreText: '上一页',
+                                               paginationNextText: '下一页',
+                                               responseHandler: function(res){
+                                                   console.log(res.result.records);
+                                                   return {
+                                                       "rows": res.result.records,
+                                                        "total": res.result.total
+                                                   };
+                                               },
+                                               columns: [
+                                                   {
+                                                       field: 'id',
+                                                       title: 'ID'
+                                                   },
+                                                   {
+                                                       field: 'newId',
+                                                       title: '新闻类别id'
+                                                   },
+                                                   {
+                                                       field: 'lang',
+                                                       title: '语言'
+                                                   },
+                                                   {
+                                                       field: 'typeId',
+                                                       title: '类型id'
+                                                   },
+                                                   {
+                                                       field: 'title',
+                                                       title: '标题'
+                                                   },
+                                                   {
+                                                       field: 'subTitle',
+                                                       title: '子标题'
+                                                   },
+                                                   {
+                                                       field: 'remark',
+                                                       title: '正文'
+                                                   },
+                                                   {
+                                                       field: 'content',
+                                                       title: '内容'
+                                                   },
+                                                   {
+                                                       field: 'tdate',
+                                                       title: '日期'
+                                                   },
+                                                   {
+                                                       field: 'operate',
+                                                       title: '操作',
+                                                       formatter: operateFormatter
+                                                   }
+
+                                               ]
+                                           });
+
+
+
+    });
+
+    function queryParams(params) {
+        var temp = {
+            pageSize: params.limit, //页面大小
+            pageNum: params.offset
+        };
+        return temp;
+    }
+
+    function operateFormatter(value, row, index) {
+        return [
+            '<a href="#" class="btn active" onclick="edit(\'' + row.id + '\')">编辑</a>'
+        ].join('')
+    }
+</script>
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/index_v1.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:18:30 GMT -->
+</html>

@@ -5,10 +5,10 @@ package com.md.admin.web;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.md.admin.service.NewsService;
-import com.md.admin.util.PageUtils;
+import com.md.admin.service.InformService;
+import com.md.admin.web.vo.InformPageVO;
+import com.md.admin.web.vo.InformVO;
 import com.md.admin.web.vo.NewsPageVO;
-import com.md.admin.web.vo.NewsVO;
 import com.md.admin.web.vo.ResultVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,48 +22,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  *
  * @author tangyue
- * @version $Id: NewsController.java, v 0.1 2019-12-23 19:36 tangyue Exp $$
+ * @version $Id: InformController.java, v 0.1 2019-12-25 17:12 tangyue Exp $$
  */
 @Controller
-@RequestMapping(value = "/news")
-public class NewsController {
+@RequestMapping(value = "/inform")
+public class InformController {
 
     @Autowired
-    private NewsService newsService;
+    private InformService informService;
 
     @GetMapping(value = "/list")
     public Object list(){
 
-        return "welcome";
+        return "informList";
     }
 
     @PostMapping(value = "/list")
     @ResponseBody
-    public ResultVO getAllPage(@RequestBody NewsPageVO pageVO){
+    public ResultVO getAllPage(@RequestBody InformPageVO pageVO){
 
         ResultVO resultVO = new ResultVO();
-        //PageUtils.setPageNum(pageVO);
-        Page<NewsVO> page = new Page<>(pageVO.getPageNum(), pageVO.getPageSize());
-        IPage<NewsVO> iPage = this.newsService.findAllPage(page, pageVO.getLang());
+        Page<InformVO> page = new Page<>(pageVO.getPageNum(), pageVO.getPageSize());
+        IPage<InformVO> iPage = this.informService.findAllPage(page, pageVO.getLang());
         resultVO.setResult(iPage);
-        return resultVO;
-    }
-
-    @PostMapping(value = "/add")
-    @ResponseBody
-    public ResultVO add(@RequestBody NewsVO newsVO){
-
-        ResultVO resultVO = new ResultVO();
-
-        return resultVO;
-    }
-
-    @PostMapping(value = "/edit")
-    @ResponseBody
-    public ResultVO edit(@RequestBody NewsVO newsVO){
-
-        ResultVO resultVO = new ResultVO();
-
         return resultVO;
     }
 }
