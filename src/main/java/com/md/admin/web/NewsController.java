@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.md.admin.entity.News;
 import com.md.admin.service.NewsService;
 import com.md.admin.util.PageUtils;
+import com.md.admin.web.convert.NewsMapping;
 import com.md.admin.web.vo.NewsPageVO;
 import com.md.admin.web.vo.NewsVO;
 import com.md.admin.web.vo.ResultVO;
@@ -33,6 +34,9 @@ public class NewsController {
 
     @Autowired
     private NewsService newsService;
+
+    @Autowired
+    private NewsMapping newsMapping;
 
     @GetMapping(value = "/list")
     public Object list(){
@@ -74,7 +78,8 @@ public class NewsController {
     public ResultVO edit(@RequestBody NewsVO newsVO){
 
         ResultVO resultVO = new ResultVO();
-
+        News news = newsMapping.voToEntity(newsVO);
+        this.newsService.updateById(news);
         return resultVO;
     }
 }

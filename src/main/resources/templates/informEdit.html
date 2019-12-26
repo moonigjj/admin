@@ -11,16 +11,15 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>首页内容编辑</h5>
+                    <h5>新闻内容编辑</h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
                         </a>
-
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <form class="form-horizontal" th:object="${news}">
+                    <form  class="form-horizontal"  th:object="${inform}">
                         <input name="id" type="hidden" th:field="*{id}" />
                         <div class="form-group">
                             <label class="col-sm-2 control-label">语言</label>
@@ -32,7 +31,7 @@
                             <label class="col-sm-2 control-label">标题</label>
 
                             <div class="col-sm-10">
-                                <input type="text"  class="form-control" th:field="*{title}">
+                                <input type="text" class="form-control" th:field="*{title}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -42,20 +41,20 @@
                                 <input type="text" class="form-control" th:field="*{subTitle}">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">日期</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" th:field="*{tdate}">
+                            </div>
+                        </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">内容</label>
 
                             <div class="col-sm-10">
                                 <textarea id="editor" th:field="*{content}" autofocus>
-                                    <p>Simditor 是团队协作工具 <a href="http://tower.im/" target="_blank">Tower</a> 使用的富文本编辑器。</p>
-                                    <p>相比传统的编辑器它的特点是：</p>
-                                    <ul>
-                                        <li>功能精简，加载快速</li>
-                                        <li>输出格式化的标准 HTML</li>
-                                        <li>每一个功能都有非常优秀的使用体验</li>
-                                    </ul>
-                                    <p>兼容的浏览器：IE10+、Chrome、Firefox、Safari。</p>
+
                                 </textarea>
                             </div>
                         </div>
@@ -63,7 +62,7 @@
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
                                 <button class="btn btn-primary" type="submit">保存内容</button>
-                                <button class="btn btn-white">取消</button>
+                                <button class="btn btn-white" onclick="back()">取消</button>
                             </div>
                         </div>
                     </form>
@@ -85,6 +84,11 @@
     $(document).ready(function() {
         $('#editor').summernote();
     });
+
+    function back() {
+        window.location.href = '/inform/list';
+    }
+
 </script>
 <!-- Mirrored from www.zi-han.net/theme/hplus/index_v1.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:18:30 GMT -->
 </html>
