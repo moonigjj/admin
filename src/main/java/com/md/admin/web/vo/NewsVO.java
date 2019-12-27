@@ -22,6 +22,8 @@ public class NewsVO {
 
     private String lang;
 
+    private String langName;
+
     private Long parentId;
 
     private String type;

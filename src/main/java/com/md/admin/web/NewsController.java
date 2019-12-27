@@ -5,7 +5,9 @@ package com.md.admin.web;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.md.admin.entity.Lang;
 import com.md.admin.entity.News;
+import com.md.admin.service.LangService;
 import com.md.admin.service.NewsService;
 import com.md.admin.util.PageUtils;
 import com.md.admin.web.convert.NewsMapping;
@@ -38,6 +40,9 @@ public class NewsController {
     @Autowired
     private NewsMapping newsMapping;
 
+    @Autowired
+    private LangService langService;
+
     @GetMapping(value = "/list")
     public Object list(){
 
@@ -69,7 +74,10 @@ public class NewsController {
     public String toEdit(@PathVariable("newsId") Long newsId, Model model){
 
         News news = this.newsService.getById(newsId);
-        model.addAttribute("news", news);
+        NewsVO newsVO = this.newsMapping.entityToVo(news);
+        Lang lang = this.langService.findTextOne(newsVO.getLang());
+        newsVO.setLangName(lang.getRemark());
+        model.addAttribute("news", newsVO);
         return "newsEdit";
     }
 

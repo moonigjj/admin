@@ -17,4 +17,6 @@ import org.mapstruct.Mapper;
 public interface NewsMapping {
 
     News voToEntity(NewsVO newsVO);
+
+    NewsVO entityToVo(News news);
 }

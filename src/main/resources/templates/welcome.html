@@ -51,7 +51,6 @@
                                                paginationPreText: '上一页',
                                                paginationNextText: '下一页',
                                                responseHandler: function(res){
-                                                   console.log(res.result.records);
                                                    return {
                                                        "rows": res.result.records,
                                                         "total": res.result.total

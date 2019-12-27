@@ -17,4 +17,6 @@ import org.mapstruct.Mapper;
 public interface InformMapping {
 
     Inform voToEntity(InformVO informVO);
+
+    InformVO entityToVo(Inform inform);
 }

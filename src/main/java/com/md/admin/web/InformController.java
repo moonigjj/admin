@@ -6,8 +6,10 @@ package com.md.admin.web;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.md.admin.entity.Inform;
+import com.md.admin.entity.Lang;
 import com.md.admin.entity.News;
 import com.md.admin.service.InformService;
+import com.md.admin.service.LangService;
 import com.md.admin.web.convert.InformMapping;
 import com.md.admin.web.vo.InformPageVO;
 import com.md.admin.web.vo.InformVO;
@@ -40,6 +42,9 @@ public class InformController {
     @Autowired
     private InformMapping informMapping;
 
+    @Autowired
+    private LangService langService;
+
     @GetMapping(value = "/list")
     public Object list(){
 
@@ -61,7 +66,10 @@ public class InformController {
     public String toEdit(@PathVariable("informId") Long informId, Model model){
 
         Inform inform = this.informService.getById(informId);
-        model.addAttribute("inform", inform);
+        InformVO informVO = informMapping.entityToVo(inform);
+        Lang lang = this.langService.findTextOne(informVO.getLang());
+        informVO.setLangName(lang.getRemark());
+        model.addAttribute("inform", informVO);
         return "informEdit";
     }
 

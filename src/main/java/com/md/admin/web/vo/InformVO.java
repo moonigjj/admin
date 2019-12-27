@@ -21,6 +21,8 @@ public class InformVO {
 
     private String lang;
 
+    private String langName;
+
     private String title;
 
     private String subTitle;
