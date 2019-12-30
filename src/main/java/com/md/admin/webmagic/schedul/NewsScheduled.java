@@ -25,21 +25,21 @@ public class NewsScheduled {
     @Autowired
     private MysqlPipeline mysqlPipeline;
 
-    @Scheduled(cron = "0 0 0/2 * * ?")
+    @Scheduled(cron = "0 0 8-18 * * ?")
     public void newsScheduled() {
 
         Spider.create(new NewsListSpider())
                 .addUrl(NewsListSpider.list).addPipeline(mysqlPipeline)
-                .thread(1).run();
+                .thread(2).run();
     }
 
 
-    @Scheduled(cron = "0 0 0/2 * * ?")
+    @Scheduled(cron = "0 0 8-18 * * ?")
     public void financialScheduled() {
 
         Spider.create(new FinancialListSpider())
                 .addUrl(FinancialListSpider.list).addPipeline(mysqlPipeline)
-                .thread(1).run();
+                .thread(2).run();
     }
 
 }
