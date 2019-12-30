@@ -15,14 +15,14 @@ import us.codecraft.webmagic.selector.Selectable;
 /**
  *
  * @author tangyue
- * @version $Id: NewsSpider.java, v 0.1 2019-12-13 10:39 tangyue Exp $$
+ * @version $Id: FinancialListSpider.java, v 0.1 2019-12-30 10:40 tangyue Exp $$
  */
 @Slf4j
-public class NewsListSpider implements PageProcessor {
+public class FinancialListSpider implements PageProcessor {
 
     private Site site = Site.me();
 
-    public static final String list = "http://www.bonusfirm.com/news";
+    public static final String list = "http://www.bonusfirm.com/financial-comments";
 
     @Override
     public void process(Page page) {
@@ -30,28 +30,27 @@ public class NewsListSpider implements PageProcessor {
 
             page.putField("title", page.getHtml().xpath("//div[@class='news_detail]/h1/text()").nodes().get(0));
             page.putField("tdate", page.getHtml().xpath("//div[@class='news_detail]/div[@class='info_title clearfix']/h3[@class='title_bar']/span/text()").nodes().get(0));
-            page.putField("newId", 14);
+            page.putField("newId", 16);
             page.putField("subTitle", page.getHtml().xpath("//div[@class='news_detail]/div[@class='content']/p/text()").nodes().get(0));
             page.putField("content", page.getHtml().xpath("//div[@class='news_detail]/div[@class='content']/").nodes().get(0));
+
         } else {
 
             List<Selectable> nodes = page.getHtml().xpath("//ul[@class='news_list clearfix']/li").nodes();
             String link = nodes.get(0).xpath("//h3").links().toString();
             page.addTargetRequest(link);
         }
-
     }
 
     @Override
     public Site getSite() {
-        return site;
+        return this.site;
     }
-
 
     public static void main(String[] args) {
 
-        Spider.create(new NewsListSpider())
-                .addUrl(list).addPipeline(new MysqlPipeline())
+        Spider.create(new FinancialListSpider()).addPipeline(new MysqlPipeline())
+                .addUrl(list)
                 .thread(1).run();
 
     }

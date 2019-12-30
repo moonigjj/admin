@@ -12,4 +12,10 @@
         </where>
         order by id desc
     </select>
+
+    <select id="selectByTDate" resultType="com.md.admin.entity.Inform">
+        select *
+        from md_inform
+        where lang = #{lang} and tdate = #{tDate} limit 1
+    </select>
 </mapper>
