@@ -25,7 +25,7 @@ public class NewsScheduled {
     @Autowired
     private MysqlPipeline mysqlPipeline;
 
-    @Scheduled(cron = "0 0/1 * * * ?")
+    @Scheduled(cron = "0 0 0/2 * * ?")
     public void newsScheduled() {
 
         Spider.create(new NewsListSpider())
@@ -34,7 +34,7 @@ public class NewsScheduled {
     }
 
 
-    @Scheduled(cron = "0 0 0/1 * * ?")
+    @Scheduled(cron = "0 0 0/2 * * ?")
     public void financialScheduled() {
 
         Spider.create(new FinancialListSpider())

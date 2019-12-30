@@ -32,7 +32,13 @@ public class FinancialListSpider implements PageProcessor {
             page.putField("tdate", page.getHtml().xpath("//div[@class='news_detail]/div[@class='info_title clearfix']/h3[@class='title_bar']/span/text()").nodes().get(0));
             page.putField("newId", 16);
             page.putField("subTitle", page.getHtml().xpath("//div[@class='news_detail]/div[@class='content']/p/text()").nodes().get(0));
-            page.putField("content", page.getHtml().xpath("//div[@class='news_detail]/div[@class='content']/").nodes().get(0));
+            List<Selectable> ps = page.getHtml().xpath("//div[@class='news_detail]/div[@class='content']/p").nodes();
+            StringBuilder sb = new StringBuilder();
+            for (Selectable s : ps){
+                sb.append(s.toString());
+            }
+            String content = sb.toString();
+            page.putField("content", content);
 
         } else {
 

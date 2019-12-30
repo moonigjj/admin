@@ -55,6 +55,7 @@ public class MysqlPipeline implements Pipeline {
         inform.setSubTitle(item.get("subTitle").toString());
         inform.setContent(item.get("content").toString());
         inform.setTdate(tDate);
+        inform.setRemark("");
         inform.setNewId(Long.parseLong(item.get("newId").toString()));
         inform.setCreateTime(now);
 
