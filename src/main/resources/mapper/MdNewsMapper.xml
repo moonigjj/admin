@@ -5,7 +5,7 @@
     <select id="selectTextOne" resultType="com.md.admin.entity.News">
         select *
         from md_news
-        where title = "text" and lang = #{lang} and type = #{type}
+        where lang = #{lang} and type = #{type}
         limit 1
     </select>
 

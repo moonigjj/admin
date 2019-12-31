@@ -4,13 +4,18 @@
 package com.md.admin.webmagic;
 
 import com.md.admin.entity.Inform;
+import com.md.admin.entity.Lang;
 import com.md.admin.service.InformService;
+import com.md.admin.service.LangService;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +34,9 @@ public class MysqlPipeline implements Pipeline {
 
     @Autowired
     private InformService informService;
+
+    @Autowired
+    private LangService langService;
 
     @Override
     public void process(ResultItems items, Task task) {
@@ -60,5 +68,17 @@ public class MysqlPipeline implements Pipeline {
         inform.setCreateTime(now);
 
         this.informService.insetAfterUpdate(inform);
+
+        List<Lang> langs = this.langService.findAll();
+        List<Inform> informs = new ArrayList<>();
+        for (Lang lang : langs){
+            inform.setId(null);
+            inform.setLang(lang.getGtLang());
+            Inform in = new Inform();
+            BeanUtils.copyProperties(inform, in);
+            informs.add(in);
+        }
+        log.info("Inform save batch");
+        this.informService.saveBatch(informs);
     }
 }

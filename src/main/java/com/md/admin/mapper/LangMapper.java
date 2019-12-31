@@ -8,6 +8,8 @@ import com.md.admin.entity.Lang;
 
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  *
  * @author tangyue
@@ -16,4 +18,6 @@ import org.apache.ibatis.annotations.Param;
 public interface LangMapper extends BaseMapper<Lang> {
 
     Lang selectTextOne(@Param("lang") String lang);
+
+    List<Lang> selectAll();
 }

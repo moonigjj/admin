@@ -9,6 +9,8 @@ import com.md.admin.mapper.LangMapper;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  *
  * @author tangyue
@@ -20,5 +22,13 @@ public class LangService extends ServiceImpl<LangMapper, Lang> {
     public Lang findTextOne(String lang){
 
         return this.baseMapper.selectTextOne(lang);
+    }
+
+    /**
+     * 查询除zh-CN以外的
+     * @return
+     */
+    public List<Lang> findAll(){
+        return this.baseMapper.selectAll();
     }
 }

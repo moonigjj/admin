@@ -9,5 +9,11 @@
         limit 1
     </select>
 
+    <select id="selectAll" resultType="com.md.admin.entity.Lang">
+        select *
+        from md_lang
+        where id >= 2
+    </select>
+
 
 </mapper>
