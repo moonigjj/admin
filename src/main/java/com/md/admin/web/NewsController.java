@@ -11,6 +11,7 @@ import com.md.admin.service.LangService;
 import com.md.admin.service.NewsService;
 import com.md.admin.util.PageUtils;
 import com.md.admin.web.convert.NewsMapping;
+import com.md.admin.web.face.CommonService;
 import com.md.admin.web.vo.NewsPageVO;
 import com.md.admin.web.vo.NewsVO;
 import com.md.admin.web.vo.ResultVO;
@@ -42,6 +43,9 @@ public class NewsController {
 
     @Autowired
     private LangService langService;
+
+    @Autowired
+    private CommonService commonService;
 
     @GetMapping(value = "/list")
     public Object list(){
@@ -87,6 +91,20 @@ public class NewsController {
 
         ResultVO resultVO = new ResultVO();
         News news = newsMapping.voToEntity(newsVO);
+        this.newsService.updateById(news);
+        return resultVO;
+    }
+
+    @GetMapping(value = "/translate/{newsId}")
+    @ResponseBody
+    public ResultVO translate(@PathVariable("newsId") Long newsId) throws Exception {
+        ResultVO resultVO = new ResultVO();
+        News news = this.newsService.getById(newsId);
+        if (news == null){
+            resultVO.setMsg("数据不存在");
+            return resultVO;
+        }
+        commonService.translate("zh-CN", news.getLang(), news);
         this.newsService.updateById(news);
         return resultVO;
     }
