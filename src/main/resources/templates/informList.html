@@ -67,10 +67,7 @@
                                                        field: 'lang',
                                                        title: '语言'
                                                    },
-                                                   {
-                                                       field: 'typeId',
-                                                       title: '类型id'
-                                                   },
+
                                                    {
                                                        field: 'title',
                                                        title: '标题'
@@ -114,13 +111,30 @@
 
     function operateFormatter(value, row, index) {
         return [
-            '<a href="#" class="btn btn-primary btn-sm" onclick="edit(\'' + row.id + '\')">编辑</a>'
+            '<a href="#" class="btn btn-primary btn-sm" onclick="edit(\'' + row.id + '\')">编辑</a>',
+            '<a href="#" class="btn btn-primary btn-sm" onclick="tran(\'' + row.id + '\')">翻译</a>'
         ].join('')
     }
 
     function edit(id) {
 
         window.location.href = '/inform/toedit/' + id;
+    }
+
+    function tran(id) {
+        layer.confirm('确认要翻译?', {
+            title: '提示',
+        }, function () {
+            $.ajax({
+                       type: 'GET',
+                       url: 'http://localhost:8089/inform/translate/' + id,
+                       success: function (res) {
+                           layer.alert(res.msg);
+                           $('#informTable').bootstrapTable('refresh');
+                       }
+                   })
+        })
+
     }
 </script>
 

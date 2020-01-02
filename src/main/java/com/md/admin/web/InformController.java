@@ -11,6 +11,7 @@ import com.md.admin.entity.News;
 import com.md.admin.service.InformService;
 import com.md.admin.service.LangService;
 import com.md.admin.web.convert.InformMapping;
+import com.md.admin.web.face.CommonService;
 import com.md.admin.web.vo.InformPageVO;
 import com.md.admin.web.vo.InformVO;
 import com.md.admin.web.vo.NewsPageVO;
@@ -44,6 +45,10 @@ public class InformController {
 
     @Autowired
     private LangService langService;
+
+    @Autowired
+    private CommonService commonService;
+
 
     @GetMapping(value = "/list")
     public Object list(){
@@ -82,6 +87,21 @@ public class InformController {
         this.informService.updateById(inform);
         return resultVO;
     }
+
+    @GetMapping(value = "/translate/{informId}")
+    @ResponseBody
+    public ResultVO translate(@PathVariable("informId") Long informId) throws Exception {
+        ResultVO resultVO = new ResultVO();
+        Inform inform = this.informService.getById(informId);
+        if (inform == null){
+            resultVO.setMsg("数据不存在");
+            return resultVO;
+        }
+        commonService.translate("zh-CN", inform.getLang(), inform);
+        this.informService.updateById(inform);
+        return resultVO;
+    }
+
 
     @GetMapping(value = "/del/{informId}")
     @ResponseBody

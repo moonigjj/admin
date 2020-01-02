@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <form  class="form-horizontal"  th:object="${inform}">
+                    <form id="editInform"  class="form-horizontal"  th:object="${inform}">
                         <input name="id" type="hidden" th:field="*{id}" />
                         <div class="form-group">
                             <label class="col-sm-2 control-label">语言</label>
@@ -61,7 +61,7 @@
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <a class="btn btn-primary">保存内容</a>
+                                <a class="btn btn-primary" onclick="edit()">保存内容</a>
                                 <a class="btn btn-white" th:href="@{/inform/list}">取消</a>
                             </div>
                         </div>
@@ -93,6 +93,18 @@
                                               autoclose:!0
         })
     });
+
+    function edit() {
+        $.ajax({
+                   type: 'POST',
+                   url: 'http://localhost:8089/inform/edit',
+                   data: $('#editInform').serialize(),
+                   success: function (res) {
+                       layer.alert(res.msg);
+                   }
+               })
+
+    }
 
 
 </script>

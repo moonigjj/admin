@@ -62,26 +62,13 @@
                                                        field: 'id',
                                                        title: 'ID'
                                                    },
-                                                   {
-                                                       field: 'parentId',
-                                                       title: '父id'
-                                                   },
+
                                                    {
                                                        field: 'lang',
                                                        title: '语言'
                                                    },
-                                                   {
-                                                       field: 'type',
-                                                       title: '类型'
-                                                   },
-                                                   {
-                                                       field: 'typeId',
-                                                       title: '类型id'
-                                                   },
-                                                   {
-                                                       field: 'sort',
-                                                       title: '排序'
-                                                   },
+
+
                                                    {
                                                        field: 'title',
                                                        title: '标题'
@@ -135,7 +122,7 @@
                        url: 'http://localhost:8089/news/translate/' + id,
                        success: function (res) {
                            layer.alert(res.msg);
-                           window.location.reload();
+                           $('#newsTable').bootstrapTable('refresh');
                        }
                    })
         })
