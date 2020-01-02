@@ -127,7 +127,7 @@
         }, function () {
             $.ajax({
                        type: 'GET',
-                       url: 'http://localhost:8089/inform/translate/' + id,
+                       url: basePath +'/inform/translate/' + id,
                        success: function (res) {
                            layer.alert(res.msg);
                            $('#informTable').bootstrapTable('refresh');

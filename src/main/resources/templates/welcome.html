@@ -36,6 +36,8 @@
 <script th:src="@{/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}"></script>
 <script type="text/javascript" th:src="@{/static/js/content.min.js}"></script>
 <script type="text/javascript" th:src="@{/static/js/welcome.min.js}"></script>
+<script th:replace="basePath :: path"></script>
+
 <script th:inline="javascript">
 
     $(function () {
@@ -114,12 +116,14 @@
     }
 
     function tran(id) {
+
+
         layer.confirm('确认要翻译?', {
             title: '提示',
         }, function () {
             $.ajax({
                        type: 'GET',
-                       url: 'http://localhost:8089/news/translate/' + id,
+                       url: basePath + '/news/translate/' + id,
                        success: function (res) {
                            layer.alert(res.msg);
                            $('#newsTable').bootstrapTable('refresh');

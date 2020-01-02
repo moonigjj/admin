@@ -97,7 +97,7 @@
     function edit() {
         $.ajax({
                    type: 'POST',
-                   url: 'http://localhost:8089/inform/edit',
+                   url: basePath + '/inform/edit',
                    data: $('#editInform').serialize(),
                    success: function (res) {
                        layer.alert(res.msg);
