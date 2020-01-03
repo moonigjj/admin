@@ -82,6 +82,7 @@
 <script th:src="@{/static/js/plugins/summernote/summernote-zh-CN.js}"></script>
 <script type="text/javascript" th:src="@{/static/js/content.min.js}"></script>
 <script type="text/javascript" th:src="@{/static/js/welcome.min.js}"></script>
+<script th:replace="basePath :: path"></script>
 <script>
     $(document).ready(function() {
         $('#editor').summernote();
