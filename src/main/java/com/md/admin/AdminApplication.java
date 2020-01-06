@@ -6,7 +6,6 @@ import org.springframework.boot.context.ApplicationPidFileWriter;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@EnableScheduling
 public class AdminApplication {
 
     public static void main(String[] args) {
