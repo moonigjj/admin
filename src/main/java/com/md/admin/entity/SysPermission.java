@@ -23,5 +23,4 @@ public class SysPermission implements Serializable {
 
     private String permission;
 
-    private Date createTime;
 }
