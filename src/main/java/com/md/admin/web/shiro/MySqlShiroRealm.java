@@ -11,15 +11,20 @@ import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  *
  * @author tangyue
  * @version $Id: MySqlShiroRealm.java, v 0.1 2020-01-06 16:17 tangyue Exp $$
  */
+@Slf4j
 public class MySqlShiroRealm extends AuthorizingRealm {
 
     @Autowired
@@ -27,8 +32,14 @@ public class MySqlShiroRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection collection) {
+        // 获取登录用户名
+        String name = (String) collection.getPrimaryPrincipal();
 
-        return null;
+        SysUser user = this.userService.findByName(name, null);
+        log.info("login user: {}", user);
+        SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
+        simpleAuthorizationInfo.addStringPermission("*");
+        return simpleAuthorizationInfo;
     }
 
     @Override
@@ -40,15 +51,15 @@ public class MySqlShiroRealm extends AuthorizingRealm {
         // 获取用户信息
         String name = authenticationToken.getPrincipal().toString();
         SysUser user = this.userService.findByName(name, null);
+        log.info("login user: {}", user);
         if (user == null){
 
-
+            throw new UnauthenticatedException("用户未验证通过");
         } else {
 
             SimpleAuthenticationInfo simpleAuthenticationInfo =
                     new SimpleAuthenticationInfo(name, user.getPassword(), getName());
             return simpleAuthenticationInfo;
         }
-        return null;
     }
 }

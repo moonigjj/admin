@@ -24,7 +24,7 @@ public class GlobalControllerAdvice {
 
         log.error("Exception info: {}", ex.fillInStackTrace());
         ResultVO resultVO = new ResultVO();
-        resultVO.setMsg("操作失败");
+        resultVO.setMsg(ex.getMessage());
         return resultVO;
     }
 }
