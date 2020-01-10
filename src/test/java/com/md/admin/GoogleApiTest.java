@@ -4,7 +4,9 @@
 package com.md.admin;
 
 import com.md.admin.entity.Inform;
+import com.md.admin.entity.SysRole;
 import com.md.admin.service.InformService;
+import com.md.admin.service.SysRoleService;
 import com.md.admin.tran.GoogleApi;
 import com.md.admin.util.GsonUtil;
 import com.md.admin.web.convert.InformMapping;
@@ -12,6 +14,9 @@ import com.md.admin.web.vo.InformVO;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.time.LocalDateTime;
+import java.util.Date;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,6 +34,23 @@ public class GoogleApiTest extends AdminApplicationTests {
     @Autowired
     private InformMapping informMapping;
 
+
+    @Autowired
+    private SysRoleService roleService;
+
+    @Test
+    public void testRole(){
+
+        SysRole role = new SysRole();
+        role.setRoleName("test");
+        role.setChecked(1);
+        role.setCreateTime(new Date());
+        role.setRemark("测试");
+
+        this.roleService.save(role);
+
+        log.info("back info: {}", role);
+    }
 
     @Test
     public void test(){
