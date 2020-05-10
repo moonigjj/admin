@@ -13,15 +13,15 @@ spring:
       spec: initialCapacity=100,maximumSize=1000
 
   thymeleaf:
-    cache: false
+    cache: true
     mode: HTML5
     encoding: UTF-8
     prefix: classpath:/templates/
     suffix: .html
   datasource:
-    url: jdbc:mysql://27.102.107.199:3306/md?useUnicode=true&serverTimezone=Asia/Shanghai&autoReconnect=true&failOverReadOnly=false
+    url: jdbc:mysql://65.52.173.155:3306/able?useUnicode=true&serverTimezone=Asia/Shanghai&autoReconnect=true&failOverReadOnly=false
     username: root
-    password: 123456
+    password: 12345678
     driver-class-name: com.mysql.cj.jdbc.Driver
 #mybatis
 mybatis-plus:
