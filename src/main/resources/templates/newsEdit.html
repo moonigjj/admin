@@ -91,7 +91,7 @@
         var id = $('#id').val();
         var title = $('#title').val();
         var subTitle = $('#subTitle').val();
-        var content = $('#content').val();
+        var content = $('#editor').code();
         $.ajax({
                    type: 'POST',
                    url: basePath + '/news/edit',

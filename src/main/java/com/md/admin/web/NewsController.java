@@ -70,7 +70,8 @@ public class NewsController {
     public ResultVO add(@RequestBody NewsVO newsVO){
 
         ResultVO resultVO = new ResultVO();
-
+        News news = newsMapping.voToEntity(newsVO);
+        this.newsService.save(news);
         return resultVO;
     }
 

@@ -5,12 +5,7 @@
     <select id="selectAll" resultType="com.md.admin.web.vo.InformVO">
         select *
         from md_inform
-        <where>
-            <if test="lang != null">
-                and lang = #{lang}
-            </if>
-        </where>
-        order by id desc
+        where lang in ('zh-CN','en')
     </select>
 
     <select id="selectByTDate" resultType="com.md.admin.entity.Inform">
