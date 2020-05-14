@@ -69,16 +69,11 @@ public class MysqlPipeline implements Pipeline {
 
         this.informService.insetAfterUpdate(inform);
 
-        List<Lang> langs = this.langService.findAll();
-        List<Inform> informs = new ArrayList<>();
-        for (Lang lang : langs){
-            inform.setId(null);
-            inform.setLang(lang.getGtLang());
-            Inform in = new Inform();
-            BeanUtils.copyProperties(inform, in);
-            informs.add(in);
-        }
+        inform.setId(null);
+        inform.setLang("en");
+        Inform in = new Inform();
+        BeanUtils.copyProperties(inform, in);
         log.info("Inform save batch");
-        this.informService.saveBatch(informs);
+        this.informService.save(inform);
     }
 }

@@ -12,11 +12,6 @@
     <select id="selectAll" resultType="com.md.admin.web.vo.NewsVO">
         select *
         from md_news
-        <where>
-            <if test="lang != null">
-                and lang = #{lang}
-            </if>
-        </where>
-        order by id desc
+        where lang in ("zh-CN", "en")
     </select>
 </mapper>
