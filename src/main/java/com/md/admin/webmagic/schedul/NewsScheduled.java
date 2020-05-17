@@ -25,12 +25,12 @@ public class NewsScheduled {
     @Autowired
     private MysqlPipeline mysqlPipeline;
 
-    @Scheduled(cron = "0 0 8-18 * * ?")
+    //@Scheduled(cron = "0 0 8-18 * * ?")
     public void newsScheduled() {
 
-        Spider.create(new NewsListSpider())
+        /*Spider.create(new NewsListSpider())
                 .addUrl(NewsListSpider.list).addPipeline(mysqlPipeline)
-                .thread(2).run();
+                .thread(2).run();*/
     }
 
 
