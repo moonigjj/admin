@@ -115,7 +115,7 @@ public class GoogleApiTest extends AdminApplicationTests {
         String json = GsonUtil.GsonString(informVO);
         log.info("informVO info: {}", json);
 
-        GoogleApi googleApi = new GoogleApi();
+        /*GoogleApi googleApi = new GoogleApi();
         try {
             String result = googleApi.translate(json,"zh-CN" ,"en");
             Inform res = GsonUtil.GsonToBean(result, Inform.class);
@@ -129,6 +129,6 @@ public class GoogleApiTest extends AdminApplicationTests {
             //this.informService.save(res);
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 }
