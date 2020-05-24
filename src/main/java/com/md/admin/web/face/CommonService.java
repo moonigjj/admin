@@ -41,10 +41,10 @@ public class CommonService {
             String subTitle = googleApi.translate(news.getSubTitle(), from, to);
             news.setSubTitle(subTitle);
         }
-        if (news.getContent() != null){
+        /*if (news.getContent() != null){
             String content = googleApi.translate(news.getContent(), from, to);
             news.setContent(content);
-        }
+        }*/
 
         return news;
     }
