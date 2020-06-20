@@ -77,7 +77,7 @@ public class GoogleApiTest extends AdminApplicationTests {
         QueryWrapper<News> news = new QueryWrapper<>();
         news.ge("lang", "zh-CN").orderByAsc("id");
         List<News> newsList = this.newsService.list(news);
-        //log.info("zh-CN info: {}", newsList.get(62));
+        log.info("zh-CN info: {}", newsList.get(0));
         for (String lang : list){
             List<News> list1 = new ArrayList<>();
             for (News news1 : newsList){
@@ -85,24 +85,24 @@ public class GoogleApiTest extends AdminApplicationTests {
                 news1.setId(null);
                 list1.add(news1);
             }
-            //this.newsService.saveBatch(list1);
+            this.newsService.saveBatch(list1);
         }
     }
 
     @Test
     public void testTran(){
         QueryWrapper<News> news = new QueryWrapper<>();
-        news.gt("id", "456").notIn("lang", "zh-CN", "en").orderByAsc("id");
+        news.gt("id", 460).notIn("lang", "zh-CN", "en").orderByAsc("id");
         List<News> newsList = this.newsService.list(news);
         log.info("not in: {}", newsList.size());
-        /*for (News news1 : newsList){
+        for (News news1 : newsList){
             try {
                 commonService.translate("zh-CN", news1.getLang(), news1);
                 this.newsService.updateById(news1);
             } catch (Exception e) {
                 continue;
             }
-        }*/
+        }
     }
 
     @Test
@@ -115,7 +115,7 @@ public class GoogleApiTest extends AdminApplicationTests {
         String json = GsonUtil.GsonString(informVO);
         log.info("informVO info: {}", json);
 
-        /*GoogleApi googleApi = new GoogleApi();
+        GoogleApi googleApi = new GoogleApi();
         try {
             String result = googleApi.translate(json,"zh-CN" ,"en");
             Inform res = GsonUtil.GsonToBean(result, Inform.class);
@@ -126,9 +126,9 @@ public class GoogleApiTest extends AdminApplicationTests {
             String c = googleApi.translate(content, "zh-CN", "en");
 
             res.setContent(c);
-            //this.informService.save(res);
+            this.informService.save(res);
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
     }
 }
