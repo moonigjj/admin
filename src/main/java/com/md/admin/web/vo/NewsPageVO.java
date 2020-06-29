@@ -21,4 +21,5 @@ public class NewsPageVO extends PageVO {
 
     private String lang;
 
+    private Integer parentId;
 }
