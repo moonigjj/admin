@@ -34,7 +34,7 @@ public class NewsScheduled {
     }
 
 
-    @Scheduled(cron = "0 0 8-18 * * ?")
+    //@Scheduled(cron = "0 0 8-18 * * ?")
     public void financialScheduled() {
 
         Spider.create(new FinancialListSpider())
