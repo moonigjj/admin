@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.md.admin.entity.News;
+import com.md.admin.web.vo.NewsPageVO;
 import com.md.admin.web.vo.NewsVO;
 
 import org.apache.ibatis.annotations.Param;
@@ -29,8 +30,8 @@ public interface NewsMapper extends BaseMapper<News> {
     /**
      * 分页
      * @param page
-     * @param lang
+     * @param pageVO
      * @return
      */
-    IPage<NewsVO> selectAll(Page page, @Param("lang") String lang);
+    IPage<NewsVO> selectAll(Page page, @Param("pageVO") NewsPageVO pageVO);
 }

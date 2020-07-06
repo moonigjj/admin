@@ -12,6 +12,13 @@
     <select id="selectAll" resultType="com.md.admin.web.vo.NewsVO">
         select *
         from md_news
-        where lang in ("zh-CN", "en")
+        <where>
+            <if test="pageVO.lang != null and pageVO.lang != ''">
+                and lang = #{pageVO.lang}
+            </if>
+            <if test="pageVO.parentId != null and pageVO.parentId != ''">
+                and parent_id = #{pageVO.parentId}
+            </if>
+        </where>
     </select>
 </mapper>

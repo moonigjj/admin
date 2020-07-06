@@ -60,7 +60,7 @@ public class NewsController {
         ResultVO resultVO = new ResultVO();
         //PageUtils.setPageNum(pageVO);
         Page<NewsVO> page = new Page<>(pageVO.getPageNum(), pageVO.getPageSize());
-        IPage<NewsVO> iPage = this.newsService.findAllPage(page, pageVO.getLang());
+        IPage<NewsVO> iPage = this.newsService.findAllPage(page, pageVO);
         resultVO.setResult(iPage);
         return resultVO;
     }
